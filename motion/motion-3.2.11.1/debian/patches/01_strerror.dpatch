@@ -1,0 +1,39 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01_strerror.dpatch by  <jam@gon.0x29.com.ve>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad motion-3.2.11.1~/motion.c motion-3.2.11.1/motion.c
+--- motion-3.2.11.1~/motion.c	2009-08-09 21:30:46.000000000 -0430
++++ motion-3.2.11.1/motion.c	2010-02-18 14:04:41.000000000 -0430
+@@ -2736,9 +2736,6 @@
+ {
+     int errno_save, n;
+     char buf[1024];
+-#if (!defined(BSD)) && (!(_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600) && ! _GNU_SOURCE)
+-    char msg_buf[100];
+-#endif
+     va_list ap;
+     int threadnr;
+ 
+@@ -2766,18 +2763,7 @@
+         strncat(buf, ": ", 1024 - strlen(buf));
+         n += 2;
+ 
+-        /*
+-         * this is bad - apparently gcc/libc wants to use the non-standard GNU
+-         * version of strerror_r, which doesn't actually put the message into
+-         * my buffer :-(.  I have put in a 'hack' to get around this.
+-         */
+-#if (defined(BSD))
+         strerror_r(errno_save, buf + n, sizeof(buf) - n);    /* 2 for the ': ' */
+-#elif (_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600) && ! _GNU_SOURCE
+-        strerror_r(errno_save, buf + n, sizeof(buf) - n);
+-#else
+-        strncat(buf, strerror_r(errno_save, msg_buf, sizeof(msg_buf)), 1024 - strlen(buf));
+-#endif
+     }
+     /* If 'level' is not negative, send the message to the syslog */
+     if (level >= 0)

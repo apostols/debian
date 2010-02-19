@@ -1,0 +1,30 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 00_file_seek_undeclared.dpatch by Cyril Brulebois <kibi@debian.org>
+##
+## DP: Fixed file_seek description funtion in ffmpeg.c
+
+@DPATCH@
+diff -urNad motion-3.2.11~/ffmpeg.c motion-3.2.11/ffmpeg.c
+--- motion-3.2.11~/ffmpeg.c	2008-09-21 18:50:58.000000000 -0430
++++ motion-3.2.11/ffmpeg.c	2009-07-13 11:22:16.000000000 -0430
+@@ -164,7 +164,7 @@
+     return write(fd, buf, size);
+ }
+ 
+-static offset_t file_seek(URLContext *h, offset_t pos, int whence)
++static int64_t file_seek(URLContext *h, int64_t pos, int whence)
+ {
+     int fd = (size_t)h->priv_data;
+     return lseek(fd, pos, whence);
+diff -urNad motion-3.2.11~/motion.c motion-3.2.11/motion.c
+--- motion-3.2.11~/motion.c	2008-09-21 18:50:58.000000000 -0430
++++ motion-3.2.11/motion.c	2009-07-13 11:25:20.000000000 -0430
+@@ -2775,7 +2775,7 @@
+ #if (defined(BSD))
+         strerror_r(errno_save, buf + n, sizeof(buf) - n);    /* 2 for the ': ' */
+ #else
+-        strcat(buf, strerror_r(errno_save, msg_buf, sizeof(msg_buf)));
++        strncat(buf, sizeof(buf) - n, strerror_r(errno_save, msg_buf, sizeof(msg_buf)));
+ #endif
+     }
+     /* If 'level' is not negative, send the message to the syslog */

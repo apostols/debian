@@ -1,0 +1,49 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.8
+Date: Thu, 18 Feb 2010 13:35:39 -0430
+Source: motion
+Binary: motion
+Architecture: source i386
+Version: 3.2.11.1-1
+Distribution: unstable
+Urgency: low
+Maintainer: Juan Angulo Moreno <juan@apuntale.com>
+Changed-By: Juan Angulo Moreno <juan@apuntale.com>
+Description: 
+ motion     - V4L capture program supporting motion detection
+Closes: 523932 538650 557416
+Changes: 
+ motion (3.2.11.1-1) unstable; urgency=low
+ .
+   * New upstream version.
+   * Bumped Standards-Version to 3.8.4.
+   * Group motion isn't created if user motion already (Closes: #557416).
+     Thanks Jean-Baptiste Lallement.
+   * Debconf translation Rusian (Closes: #538650). Thanks Yuri Kozlov.
+   * Fixed: Segfaults when reporting an error. (Closes: #523932).
+     Thanks Stephen Kitt.
+Checksums-Sha1: 
+ bc27c043821831de76cad3f14787d7fc55b6942b 1109 motion_3.2.11.1-1.dsc
+ 6e7acea3b27a9e24301e57e066ad5603d41598b2 417246 motion_3.2.11.1.orig.tar.gz
+ 8364491034bcec1962aa761aa78bb8d631bba7eb 31870 motion_3.2.11.1-1.diff.gz
+ 783bded45b1a7836d6a298b3001f65ac789404a8 301206 motion_3.2.11.1-1_i386.deb
+Checksums-Sha256: 
+ a9ce0b6328505f3acba06ac7e5dbe5749e207d1e69f0334f50152abc97da203b 1109 motion_3.2.11.1-1.dsc
+ 73973e723c39c05cbfc5c2a90357c5dea3078c3162dfc41f303fbf40cda9e403 417246 motion_3.2.11.1.orig.tar.gz
+ 652beb09ceb275705c3c424ba3787e0a703729b32dc31440bf026568ddcad6e0 31870 motion_3.2.11.1-1.diff.gz
+ aa5c51c0a44d5cd638e294c97e4eea6cb5f28d8f1616dacbbdb82e53ffdbd58e 301206 motion_3.2.11.1-1_i386.deb
+Files: 
+ c150622c6adc3ce0b1011084b8019c26 1109 graphics optional motion_3.2.11.1-1.dsc
+ 4e729f129d8f9b9abaed5121c3cd0037 417246 graphics optional motion_3.2.11.1.orig.tar.gz
+ 1617a65a30b9f0a42d9e111cf9e0fe3c 31870 graphics optional motion_3.2.11.1-1.diff.gz
+ b182e35f575a029459cf125b44f149ca 301206 graphics optional motion_3.2.11.1-1_i386.deb
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (GNU/Linux)
+
+iEYEARECAAYFAkt9zsMACgkQyELb8TS8zQQCDwCgyrxxIWwWCbwD8carV9/0+JJe
+YuEAn0XLkbZk9DJy1nZ7TC6Uai+8Ej/B
+=gD2q
+-----END PGP SIGNATURE-----
